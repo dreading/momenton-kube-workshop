@@ -40,8 +40,8 @@ podTemplate(label: label,
             dir('first-app') {
               sh """
                 docker build \
-                  -t desdrury/first-app:${VERSION}.${COMMIT}  \
-                  -t desdrury/first-app:latest \
+                  -t dreading/first-app:${VERSION}.${COMMIT}  \
+                  -t dreading/first-app:latest \
                   .
               """
             }
@@ -51,8 +51,8 @@ podTemplate(label: label,
         stage('Push image') {
           withDockerRegistry([credentialsId: 'docker-hub-user']) {
             withEnv(['VERSION=' + env.VERSION.trim(), 'COMMIT=' + env.COMMIT.trim()]) {
-              sh "docker push desdrury/first-app:${VERSION}.${COMMIT}"
-              sh 'docker push desdrury/first-app:latest'
+              sh "docker push dreading/first-app:${VERSION}.${COMMIT}"
+              sh 'docker push dreading/first-app:latest'
             }
           }
         }
